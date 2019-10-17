@@ -448,8 +448,8 @@ Resources:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
       Cooldown: 60
-      HealthCheckGracePeriod: 120
-      HealthCheckType: ELB
+      HealthCheckGracePeriod: 600
+      HealthCheckType: EC2
       LaunchConfigurationName:
         !If
           [ PHP55,
@@ -493,7 +493,7 @@ Resources:
     CreationPolicy:
       ResourceSignal:
         Count: !Ref WebAsgMin
-        Timeout: PT5M
+        Timeout: PT20M
   WebLaunchConfiguration55:
     Condition: PHP55
     Type: AWS::AutoScaling::LaunchConfiguration
